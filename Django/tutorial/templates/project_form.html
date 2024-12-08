@@ -1,0 +1,14 @@
+{% block content %}
+
+<h1>Project Form</h1>
+
+<form method="POST">
+
+    {% csrf_token %}
+    {{form.as_p}}
+
+    <input type="submit">
+
+{% endblock %}
+
+</form>
