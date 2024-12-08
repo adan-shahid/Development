@@ -7,7 +7,7 @@ def greeting(request):
     return HttpResponse("Hello Adan!")
 
 def project(request):
-    return render(request, 'index.html')
+    return render(request, 'navbar.html',)
 
 def createProject(request):
     form = ProjectForm()
