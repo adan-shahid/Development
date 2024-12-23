@@ -1,13 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Django Tutorial</title>
-</head>
-<body>
-    <h1>Hello World!</h1> 
-    <p>My name is Adan Shahid. This is my practice for django tutorial.</p>
-    
-</body>
-</html>
+
+
+{% extends 'main.html' %}
+
+{% block content1 %}
+<h3>This is my first webpage.</h3>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem sit commodi veritatis aliquid deleniti at, ipsa officia, non, eveniet esse assumenda corrupti! Aspernatur illum error eius voluptatum doloremque amet reprehenderit!</p>
+
+{% endblock content1 %}
