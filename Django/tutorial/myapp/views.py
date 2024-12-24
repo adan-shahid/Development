@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+import datetime
 
 
 # Create your views here.
@@ -22,6 +23,10 @@ projectsList = [
         'description':'Awesome open source project I am still working'
     },
 ]
+
+def hello(request):
+    day = datetime.datetime.now().date()
+    return render(request, 'single-project.html',{'today':day})
 
 def projects(request):
     page = 'project'
