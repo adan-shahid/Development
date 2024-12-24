@@ -3,7 +3,32 @@
 {% extends 'main.html' %}
 
 {% block content1 %}
-<h3>This is my first webpage.</h3>
-<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem sit commodi veritatis aliquid deleniti at, ipsa officia, non, eveniet esse assumenda corrupti! Aspernatur illum error eius voluptatum doloremque amet reprehenderit!</p>
+
+<p>You are on the {{page}} page</p>
+<h1>Projects</h1>
+<ul>
+    {% for project in projects%}
+    <li>Title: <a href="/project/{{project.id}}">{{project.title}}</a>------ {{project.description}}</li>
+  
+
+    {% endfor %}
+
+</ul>
+
+<!-- {% if age > 10 %}
+<p>Your age is greater than 10</p>
+
+{% elif age == 10 %}
+<p>You are exacty 10 years old.</p>
+
+{% else %}
+<p>Your age is less than 10</p>
+
+{% endif %} -->
+
+
+
+<!-- <h3>This is my first webpage.</h3>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem sit commodi veritatis aliquid deleniti at, ipsa officia, non, eveniet esse assumenda corrupti! Aspernatur illum error eius voluptatum doloremque amet reprehenderit!</p> -->
 
 {% endblock content1 %}
