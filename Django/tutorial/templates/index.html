@@ -4,8 +4,29 @@
 
 {% block content1 %}
 
-<p>You are on the {{page}} page</p>
+<!-- <p>You are on the {{page}} page</p> -->
 <h1>Projects</h1>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>projects</th>
+        <th>Votes</th>
+        <th>Ratio</th>
+        <th></th>
+    </tr>
+    {% for project in projects%}
+    <tr>
+        <td>{{project.id}}</td>
+        <td>{{project.title}}</td>
+        <td>{{project.vote_total}}</td>
+        <td>{{project.vote_ratio}}%</td>
+        <td>{{project.created}}</td>
+        <td><a href="/project/{{project.id}}">View</a></td>
+    </tr>
+
+    {% endfor %}
+
+</table>
 <ul>
     {% for project in projects%}
     <li>Title: <a href="/project/{{project.id}}">{{project.title}}</a>------ {{project.description}}</li>
