@@ -1,10 +1,13 @@
 
 {% include 'navbar.html' %}
 
-Hello There!<p>Today is on {{today}}</p>
-<h2>This is my single Project.</h2>
+<!-- Hello There!<p>Today is on {{today}}</p>
+<h2>This is my single Project.</h2> -->
+
+<img style="max-width: 500px;" src="{{ project.featured_image.url }}" >
 <h2> {{ project.title }} </h2>
 <br>
+
 <h2>
 {% for tag in project.tags.all %}
     <span style="border: 1px solid grey">{{tag}}</span>
