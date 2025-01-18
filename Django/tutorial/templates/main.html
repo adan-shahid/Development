@@ -1,6 +1,5 @@
-<!DOCTYPE html>
 {% load static %}  
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
@@ -15,16 +14,14 @@
     <link rel="stylesheet" href="{% static 'uikit/styles/uikit.css' %}" />
     <!-- Dev Search UI -->
     <link rel="stylesheet" href="{% static 'styles/app.css' %}" />
-    {% include 'navbar.html' %}
+    
 </head>
 <body>
     <!-- <h1>This is the Main Template </h1 -->
+    {% include 'navbar.html' %}
     {% block content1 %}
 
-
-
-    {% endblock content1 %}
-
+    
 
 <!-- Main Section -->
 <main class="projects">
@@ -84,17 +81,11 @@
           </div>
           {% endfor %}
 
-          
-
-          
-
-         
-
-          
-         
+            
         </div>
       </div>
     </section>
+    {% endblock content1 %}
 
     <!-- <div class="pagination">
       <ul class="container">
