@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-{% load static %}
+{% load static %}  
+
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
@@ -14,11 +15,17 @@
     <link rel="stylesheet" href="{% static 'uikit/styles/uikit.css' %}" />
     <!-- Dev Search UI -->
     <link rel="stylesheet" href="{% static 'styles/app.css' %}" />
+    {% include 'navbar.html' %}
 </head>
 <body>
-    <!-- <h1>This is the Main Template </h1> -->
-    {% include 'navbar.html' %}
-  
+    <!-- <h1>This is the Main Template </h1 -->
+    {% block content1 %}
+
+
+
+    {% endblock content1 %}
+
+
 <!-- Main Section -->
 <main class="projects">
     <section class="hero-section text-center">
@@ -44,6 +51,7 @@
     <section class="projectsList">
       <div class="container">
         <div class="grid grid--three">
+          
             {% for project in projects %}
           <div class="column">
             
@@ -51,6 +59,7 @@
               <a href="{% url 'project' project.id %}" class="project">
                 <img class="project__thumbnail" src="{{project.featured_image.url}}" alt="project thumbnail" />
                 <div class="card__body">
+                  
                   <h3 class="project__title">{{project.title}}</h3>
                   <p><a class="project__author" href="{% url 'project' project.id %}">By Dennis Ivanov</a></p>
                   <p class="project--rating">
@@ -58,10 +67,14 @@
                     Feedback ({{project.vote_total}} Vote{{project.vote_total|pluralize:"s"}})
                   </p>
                   <div class="project__tags">
+
                     {% for tag in project.tags.all %}
+
                     <span class="tag tag--pill tag--main">
+
                       <small>{{tag}}</small>
                     </span>
+
                     {% endfor %}
                     
                   </div>
