@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 import datetime
 from .models import Project
 from .forms import ProjectForm
@@ -46,6 +47,10 @@ def project(request,pk):
     #         projectObj = i
     return render(request, 'single-project.html', {'project': projectObj}) #'tags':tags })
 
+
+# Now someone can only edit these pages, if he is an autheticated user
+
+@login_required(login_url='login') # if the user is not logged in, send him to this page.
 def createForm(request):
     form = ProjectForm()
 
@@ -57,7 +62,7 @@ def createForm(request):
     context = {'form':form} 
     return render(request,'project_form.html',context)
 
-
+@login_required(login_url='login')
 def updateProject(request,pk):
     project = Project.objects.get(id=pk)
     form = ProjectForm(instance=project)
@@ -70,6 +75,7 @@ def updateProject(request,pk):
     context = {'form':form} 
     return render(request,'project_form.html',context)
 
+@login_required(login_url='login')
 def deleteProject(request,pk):
     project = Project.objects.get(id=pk)
     if request.method == 'POST':

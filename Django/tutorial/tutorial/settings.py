@@ -38,8 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'myapp',
-    'users.apps.UsersConfig',
+    'myapp.apps.MyappConfig',  # If I don't register app like this,
+    'users.apps.UsersConfig',  # Signals will not work.
 ]
 
 MIDDLEWARE = [
