@@ -6,7 +6,7 @@ import uuid
 # Create your models here.
 
 from django.db.models.signals import post_save, post_delete
-from django.dispatch import receiver
+from django.dispatch import receiver # imported it to use decorator
 
 
  
@@ -44,27 +44,25 @@ class Skill(models.Model):
 
     def __str__(self):
         return str(self.name) 
-
-#@receiver(post_save,  sender=Profile)
     
-def createdProfile(sender, instance, created, **kwargs ):
-    if created:
-        user = instance
-        profile = Profile.objects.create(
-            user=user,
-            username=user.username,
-            email= user.email,
-            name=user.first_name,
-        )
+# Signals should be put in some separete file
+# go into the user app and create a new file, signals.py 
+
     
-
-
-
+'''  
+Instead of writing this, I am using deorator.
+def profileUpdated(sender,instance, created, **kwargs):
+    print('Profile Saved!')
+    print('Instance',instance)
+    print('CREATED',created)
 
 def deleteUser(sender, instance, **kwargs):
-    print('Deleting User....')
+    print('Deleting User...')
+    '''
 
 
 
-post_save.connect(createdProfile, sender=User)
-#post_delete.connect(deleteUser, sender=Profile)
+
+'''
+post_save.connect(profileUpdated, sender=Profile)
+post_delete.connect(deleteUser, sender=Profile) '''
