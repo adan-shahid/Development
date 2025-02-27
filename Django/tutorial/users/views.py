@@ -2,10 +2,11 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import  login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from django.contrib.auth.forms import UserCreationForm
+#from django.contrib.auth.forms import UserCreationForm
 
 from django.contrib.auth.models import User
 from .models import Profile, Skill
+from .forms import CustomUserCreationForm
 
 
 
@@ -45,11 +46,11 @@ def logoutUser(request):
 
 def registerUser(request):
     page = 'register'
-    form = UserCreationForm()
+    form = CustomUserCreationForm()
     # Now we are going to register a user through this form
      
     if request.method == "POST":
-        form = UserCreationForm(request.POST)
+        form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save(commit=False) # here we are creating a temp user form, before storing it.
             user.username = user.username.lower() # to make sure that 2 user not have same username. i.e, lower and capital
