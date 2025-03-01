@@ -13,4 +13,12 @@ class CustomUserCreationForm(UserCreationForm): # we are inheriting from django 
         labels = {
             'first_name': 'Name',
         }
+     # For the signup page, i have deleted the imput div, so it canot be stylled like the login page
+     # here i am using this to style the signup page manually without that div.
+    def __init__(self,*args,**kwargs):
+        super(CustomUserCreationForm, self).__init__(*args, **kwargs)
+
+
+        for name,field in self.fields.items():
+            field.widget.attrs.update({'class':'input'})
          
