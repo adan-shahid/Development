@@ -44,15 +44,20 @@
             {{field.help_text}}
 
             {% endif %}
-            </div>
+
+<!-- this is just showing helping text.  -->
+<!-- How do we can show the errors?? -->
+            
+            {% for error in field.errors %}
+            <p style="color: red;" >{{error}}</p>
+
             {% endfor %}
-             </form>
-  
-         
-  
-         
-  
-           
+
+
+
+
+            </div>
+            {% endfor %}         
            
             <div class="auth__actions">
               <input class="btn btn--sub btn--lg" type="submit" value="Sign  In" />
