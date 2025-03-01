@@ -1,6 +1,9 @@
 {% extends 'main.html' %}
+{% load static %}
 
 {% block content1 %}
+
+<!-- What the user will do if he had not registered or if he had account -->
 
 {% if page == 'register' %}
 
@@ -17,8 +20,8 @@
 
     <p>Already have a account <a href="{% url 'login' %}">Login</a></p>
 
-{% else %}
-<form action="{% url 'login' %}" method="POST">
+
+<!-- <form action="{% url 'login' %}" method="POST">
     {% csrf_token %}
     <input type="text" name="username" placeholder="Username">
     <input type="password" name="password" placeholder="Enter Password">
@@ -26,7 +29,60 @@
 
     <p>Don't have a account <a href="{% url 'register' %}">Sign Up</a></p>
 
-</form>
+</form> -->
+
+{% else %}
+<div class="auth">
+    <div class="card">
+      <div class="auth__header text-center">
+        <a href="/">
+          <img src="{% static 'img/icon.svg' %}" alt="icon" />
+        </a>
+        <h3>Account Login</h3>
+        <p>Hello Developer, Welcome Back!</p>
+      </div>
+
+      <form  action="{% url 'login' %}" method="POST" class="form auth__form">
+        {% csrf_token %}
+        <!-- Input:username -->
+        <div class="form__field">
+
+          <label for="formInput#text">Username: </label>
+          <input
+            class="input input--text"
+            id="formInput#text"
+            type="text"
+            name="username"
+            placeholder="Enter your username..."
+          />
+        </div>
+
+        <!-- Input:Password -->
+        <div class="form__field">
+          <label for="formInput#password">Password: </label>
+          <input
+            class="input input--password"
+            id="formInput#passowrd"
+            type="password"
+            name="password"
+            placeholder="••••••••"
+          />
+        </div>
+        <div class="auth__actions">
+          <input class="btn btn--sub btn--lg" type="submit" value="Log In" />
+          <a href="forgetpassword.html">Forget Password?</a>
+        </div>
+      </form>
+      <div class="auth__alternative">
+        <p>Don’t have an Account?</p>
+        <a href="{% url 'register' %}">Sign Up</a>
+      </div>
+    </div>
+  </div>
+
+
+
+
 {% endif %}
 
 {% endblock content1 %}
