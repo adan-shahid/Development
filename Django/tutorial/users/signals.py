@@ -15,12 +15,27 @@ def createdProfile(sender, instance, created, **kwargs ):
             name=user.first_name,
         )
 
+# Now simply we modify the user(in admin) anytime the profile is updated.
+# We are doing this to ensure that when a user on website changes its information,
+# that changes will also be reflected in the admin portal.
+
+def updateUser(sender, instance, created, **kwargs):
+    profile = instance 
+    user = profile.user
+    if created == False:
+        user.first_name = profile.name
+        user.username = profile.username
+        user.email = profile.email
+        user.save()
+         
+
 def deleteUser(sender, instance, **kwargs):
     user = instance.user
     user.delete() 
    
 
 post_save.connect(createdProfile, sender=User) #anytime a user model will be created, details will be shown.
+post_save.connect(updateUser, sender=Profile) # anytime profile is changed, we gonna trigger this view.
 post_delete.connect(deleteUser, sender=Profile)
 
 # Now Do we tell the django that signals are here?

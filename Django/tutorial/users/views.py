@@ -59,7 +59,8 @@ def registerUser(request):
             messages.success(request, 'User account was created!')
 
             login(request, user)
-            return redirect('profiles')
+            #return redirect('profiles')
+            return redirect('edit-account')
         else:
              messages.success(request, 'An error has occurred during registration')
 
@@ -108,7 +109,16 @@ def userAccount(request):
 @login_required(login_url='login') # this is decorator
 def editAccount(request):
 
-    form = profileForm()
+    profile = request.user.profile # we just gonna edit the logged in user.
+    form = profileForm(instance=profile) # instance = profile, because we need to prefill those fields.  
+
+    if request.method == 'POST':
+        form = profileForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            form.save()
+
+            return redirect('account')
+
     context = {'form':form}
     return render(request, 'users/profile_form.html', context)
 

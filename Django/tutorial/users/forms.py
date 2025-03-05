@@ -26,4 +26,14 @@ class CustomUserCreationForm(UserCreationForm): # we are inheriting from django 
 class profileForm(ModelForm):
     class Meta:
         model  = Profile
-        fields = '__all__'
+        #fields = '__all__'
+# Since we don't want all the fiels to be displayed. for this purpose:
+        fields = ['name', 'email','location', 'bio', 'short_intro', 'profile_image',
+                  'social_github', 'social_linkedin', 'social_twitter', 'social_youtube', 'social_website']
+        
+    def __init__(self,*args,**kwargs):
+        super(profileForm, self).__init__(*args, **kwargs)
+
+
+        for name,field in self.fields.items():
+            field.widget.attrs.update({'class':'input'})
