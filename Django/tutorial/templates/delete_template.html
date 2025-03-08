@@ -1,7 +1,7 @@
 {% extends 'main.html' %}
 
 {% block content1 %}
-
+<!-- 
 <form action="" method="POST">
     {% csrf_token %}
     <p>Are you sure you want to delete "{{object}}"?</p>
@@ -9,6 +9,33 @@
        Go Back
     </a>
     <input type="submit" value="Confirm"/>
-</form>
+</form> -->
+
+<main class="formPage my-xl">
+    <div class="content-box">
+        <div class="formWrapper">
+            
+
+            <form class="form" action="" method="POST">
+                <!-- Input:Text -->
+                {% csrf_token %}
+
+                
+                <p>Are you sure you want to delete "{{object}}"?</p>
+
+                <!-- Here Go Back button is hard coded, we want to make it dynamic -->
+                <a class="btn btn--sub btn--lg  my-md" href="{{request.GET.next}}">
+                   Go Back
+                </a>
+               
+
+               
+                <input class="btn btn--sub btn--lg  my-md" type="submit" value="Confirm" />
+            </form>
+        </div>
+    </div>
+</main>
+
+
 
 {% endblock content1 %}
