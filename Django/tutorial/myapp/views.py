@@ -2,8 +2,10 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 import datetime
-from .models import Project
+
+from .models import Project, Tag
 from .forms import ProjectForm
+from .utils import searchProject
 
 
 # Create your views here.
@@ -34,8 +36,9 @@ def hello(request):
 def projects(request):
     # page = 'project'
     # age = 10
-    projects = Project.objects.all()
-    context = {'projects':projects}
+    projects, text = searchProject(request)
+   # we are passing here 'projects', so that it stays in the search bar
+    context = {'projects':projects, 'text':text}
     # context = {'page':page, 'age':age, 'projects':projectsList}
     return render(request,'index.html', context)
 
