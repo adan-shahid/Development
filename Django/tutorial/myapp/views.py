@@ -40,6 +40,7 @@ def projects(request):
     # age = 10
     projects, text = searchProject(request)
 
+# Code for pagination starts here.
     # on one page, it will show 3 projects.
     #page = 1
     page = request.GET.get('page')
@@ -54,10 +55,18 @@ def projects(request):
     except EmptyPage:
         page = paginator.num_pages
         projects = paginator.page(page)
+# pagination code ends here.
+
+# What if we have 1000 of projects and 100 of buttons show in the pagination. That's not look good.
+# so we want to limit the number of buttons on the page. for this we write our own custom class.
+
+    custom_range = range(1,20)
 
 
    # we are passing here 'projects', so that it stays in the search bar
-    context = {'projects':projects, 'text':text}
+    context = {'projects':projects, 'text':text, 
+             'paginator':paginator, 'custom_range':custom_range}
+        
     # context = {'page':page, 'age':age, 'projects':projectsList}
     return render(request,'index.html', context)
 

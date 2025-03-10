@@ -111,6 +111,44 @@
         </div>
       </div>
     </section>
+
+  {% if projects.has_other_pages %}
+
+  <!-- This code will be for pagination buttons at the bottom of the page. -->
+    <div class="pagination">
+      <ul class="container">
+
+      <!-- Now the issue is, our pages will always show pagination even if there is nothing to paginate.
+       To avoid that purpose, we gonna write if condition on this whole div -->
+
+<!-- Now we want to add previous and next page buttons. -->
+        {% if projects.has_previous %}
+        <li><a href="?page={{projects.previous_page_number}}" class="btn">&#10094;  prev</a></li>
+        {% endif %}
+
+
+
+
+        <!-- Here 'paginator' is the object, in the projects view function. -->
+          {% for page in custom_range %}
+
+<!-- this if else code is for changing the color of paginator on which we currently are. -->
+          {% if page == projects.number %}
+          <li><a href="?page={{page}}" class="btn btn--sub">{{page}}</a></li>
+          {% else %}
+          <li><a href="?page={{page}}" class="btn">{{page}}</a></li>
+
+          {% endif  %}
+          {% endfor %}
+
+          {% if projects.has_next %}
+          <li><a href="?page={{projects.next_page_number}}" class="btn">Next &#10095; </a></li>
+          {% endif %}
+
+
+      </ul>
+    </div>
+    {% endif %}
     {% endblock content1 %}
 
     <!-- <div class="pagination">
