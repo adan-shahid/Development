@@ -24,6 +24,10 @@ class Project(models.Model):
     def __str__(self):
         return self.title
     
+# If we want to sort the projects in old first 
+    class Meta:
+        ordering = ['created']
+    
 
 class Review(models.Model):
     VOTE_TYPE = (

@@ -7,6 +7,8 @@ from .models import Project, Tag
 from .forms import ProjectForm
 from .utils import searchProject
 
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+
 
 # Create your views here.
 
@@ -37,6 +39,23 @@ def projects(request):
     # page = 'project'
     # age = 10
     projects, text = searchProject(request)
+
+    # on one page, it will show 3 projects.
+    #page = 1
+    page = request.GET.get('page')
+    results = 3
+    paginator = Paginator(projects, results)
+
+    try:
+        projects = paginator.page(page)
+    except PageNotAnInteger:
+        page = 1
+        projects = paginator.page(page)
+    except EmptyPage:
+        page = paginator.num_pages
+        projects = paginator.page(page)
+
+
    # we are passing here 'projects', so that it stays in the search bar
     context = {'projects':projects, 'text':text}
     # context = {'page':page, 'age':age, 'projects':projectsList}
@@ -66,7 +85,7 @@ def createForm(request):
             project = form.save(commit=False) # updated the project 
             project.owner = profile
             project.save()
-            return redirect("projects")
+            return redirect("account")
     context = {'form':form} 
     return render(request,'project_form.html',context)
 
