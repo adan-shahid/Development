@@ -8,7 +8,7 @@ from django.db.models import Q
 from django.contrib.auth.models import User
 from .models import Profile, Skill
 from .forms import CustomUserCreationForm, profileForm, SkillForm
-from .utils import searchProfiles
+from .utils import searchProfiles, paginateProfiles
 
 
 
@@ -74,6 +74,7 @@ def registerUser(request):
 
 def profiles(request):
 
+
     #text = ''
     #if request.GET.get('text'):
     #    text = request.GET.get('text')
@@ -98,11 +99,14 @@ def profiles(request):
     #                                  Q(skill__in= skills))
 
     profiles, text = searchProfiles(request)
+    custom_range, profiles = paginateProfiles(request, profiles, 3)
+
     #profiles = Profile.objects.all()
     skills = Skill.objects.all()
     context = {'profiles':profiles,
                'skills':skills,
-               'text':text}
+               'text':text,
+               'custom_range':custom_range}
     return render(request, 'users/profiles.html', context)
 
 def userProfile(request, pk):

@@ -4,6 +4,40 @@
 # 
 from .models import Profile, Skill
 from django.db.models import Q 
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+
+
+def paginateProfiles(request, profiles, results):
+    # Code for pagination starts here.
+    # on one page, it will show 3 projects.
+    #page = 1
+    page = request.GET.get('page')
+ #   results = 3, because we are passing this value in our view.
+    paginator = Paginator(profiles, results)
+
+    try:
+        profiles = paginator.page(page)
+    except PageNotAnInteger:
+        page = 1
+        profiles = paginator.page(page)
+    except EmptyPage:
+        page = paginator.num_pages
+        profiles = paginator.page(page)
+# pagination code ends here.
+# What if we have 1000 of projects and 100 of buttons show in the pagination. That's not look good.
+# so we want to limit the number of buttons on the page. for this we write our own custom class.
+# Here this code will show option of 5 pages.
+    leftIndex = (int(page) - 4)
+    if leftIndex < 1:
+        leftIndex = 1
+    rightIndex = (int(page) + 5)
+    if rightIndex > paginator.num_pages:
+        rightIndex = paginator.num_pages + 1
+
+    custom_range = range(leftIndex,rightIndex)
+
+    return custom_range, profiles  
+
 
 def searchProfiles(request):
     text = ''

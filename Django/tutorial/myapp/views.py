@@ -41,7 +41,7 @@ def projects(request):
     # age = 10
     projects, text = searchProject(request)
 
-    custom_range, projects = paginateProjects(request, projects, 6)
+    custom_range, projects = paginateProjects(request, projects, 3)
 
 
 # because the views becomes messy wo we are moving this code

@@ -8,7 +8,7 @@ def paginateProjects(request, projects, results):
     # on one page, it will show 3 projects.
     #page = 1
     page = request.GET.get('page')
-    results = 3
+   # results = 3
     paginator = Paginator(projects, results)
 
     try:
@@ -36,17 +36,6 @@ def paginateProjects(request, projects, results):
     custom_range = range(leftIndex,rightIndex)
 
     return custom_range, projects  
-
-
-
-
-
-
-
-
-
-
-
 
 
 def searchProject(request):
