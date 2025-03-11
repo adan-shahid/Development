@@ -58,7 +58,7 @@
         </div>
 
         <div class="hero-section__search">
-          <form class="form" action="{% url 'projects' %}" method="get">
+          <form id="searchForm" class="form" action="{% url 'projects' %}" method="get">
             <div class="form__field">
               <label for="formInput#search">Search By Projects </label>
               <input class="input input--text" id="formInput#search" type="text" name="text"
@@ -134,5 +134,5 @@
  
 </body>
 
-<script src="{% static 'uikit/app.js' %}" ></script>
+<!-- <script src="{% static 'uikit/app.js' %}" ></script> -->
 </html>

@@ -14,29 +14,53 @@
 
 <!-- Now we want to add previous and next page buttons. -->
       {% if queryset.has_previous %}
-      <li><a href="?page={{queryset.previous_page_number}}" class="btn">&#10094;  prev</a></li>
+      <li><a href="?page={{queryset.previous_page_number}}" class="btn" data-page="{{queryset.previous_page_number}}" >&#10094;  prev</a></li>
       {% endif %}
-
-
-
 
       <!-- Here 'paginator' is the object, in the projects view function. -->
         {% for page in custom_range %}
 
 <!-- this if else code is for changing the color of paginator on which we currently are. -->
         {% if page == queryset.number %}
-        <li><a href="?page={{page}}" class="btn btn--sub">{{page}}</a></li>
+        <li><a href="?page={{page}}" class="btn btn--sub" data-page="{{page}}" >{{page}}</a></li>
         {% else %}
-        <li><a href="?page={{page}}" class="btn">{{page}}</a></li>
+        <li><a href="?page={{page}}" class="btn" data-page="{{page}}" >{{page}}</a></li>
 
         {% endif  %}
         {% endfor %}
 
         {% if queryset.has_next %}
-        <li><a href="?page={{queryset.next_page_number}}" class="btn">Next &#10095; </a></li>
+        <li><a href="?page={{queryset.next_page_number}}" class="btn" data-page="{{queryset.next_page_number}}" >Next &#10095; </a></li>
         {% endif %}
-
 
     </ul>
   </div>
   {% endif %}
+
+<script type="text/javascript" >
+
+    //Get search FORM and PAGE Links
+    let searchForm = document.getElementById('searchForm')
+    let pageLinks = document.getElementsByClassName('btn')
+
+    //ensure searchForm exists.
+    if(searchForm){
+        for(let i=0; pageLinks.length > i; i++){
+            pageLinks[i].addEventListener('click', function (e){
+                e.preventDefault()
+                
+                //GET THE DATA ATTRIBUTE
+                let page = this.dataset.page
+                //console.log('PAGE',page)
+
+                //ADD HIDDEN SEARCH INPUT TO FORM
+                searchForm.innerHTML += `<input value=${page} name="page" hidden/>`
+                
+                
+                //SUBMIT FORM
+                searchForm.submit()
+            })
+        }
+    }
+
+</script>
