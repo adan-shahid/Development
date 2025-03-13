@@ -40,7 +40,8 @@ class Review(models.Model):
     body = models.TextField(null = True, blank=True)
     value = models.CharField(max_length=200, choices = VOTE_TYPE)
     created = models.DateTimeField(auto_now_add=True)
-    id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
+    id = models.UUIDField(default=uuid.uuid4, unique=True,
+                           primary_key=True, editable=False)
 
 # WE DONT WANT A SINGLE USER TO LEAVE MORE THAN ONE COMMENT.
 
