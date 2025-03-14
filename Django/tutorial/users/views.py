@@ -102,15 +102,14 @@ def profiles(request):
     custom_range, profiles = paginateProfiles(request, profiles, 3)
 
     #profiles = Profile.objects.all()
-    skills = Skill.objects.all()
+   # skills = Skill.objects.all()
     context = {'profiles':profiles,
-               'skills':skills,
                'text':text,
                'custom_range':custom_range}
     return render(request, 'users/profiles.html', context)
 
 def userProfile(request, pk):
-    profile = Profile.objects.get(id = pk)
+    profile = Profile.objects.get(id=pk)
 
     topSkills = profile.skill_set.exclude(description__exact="")
 
