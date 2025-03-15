@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 import datetime
 
 from .models import Project, Tag
-from .forms import ProjectForm
+from .forms import ProjectForm, ReviewForm
 from .utils import searchProject, paginateProjects
 
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
@@ -88,11 +88,12 @@ def projects(request):
 
 def project(request,pk):
     projectObj = Project.objects.get(id=pk)
+    form = ReviewForm()
     # tags = projectObj.tags.all()
     # for i in  projectsList:
     #     if i['id'] == pk:
     #         projectObj = i
-    return render(request, 'single-project.html', {'project': projectObj}) #'tags':tags })
+    return render(request, 'single-project.html', {'project': projectObj,'form': form}) #'tags':tags })
 
 
 # Now someone can only edit these pages, if he is an autheticated user

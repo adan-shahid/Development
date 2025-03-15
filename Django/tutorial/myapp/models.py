@@ -43,7 +43,7 @@ class Review(models.Model):
     id = models.UUIDField(default=uuid.uuid4, unique=True,
                            primary_key=True, editable=False)
 
-# WE DONT WANT A SINGLE USER TO LEAVE MORE THAN ONE COMMENT.
+# A USER CAN ONLY LEAVE 1 COMMENT ON THE PROJECT.
 
     class Meta:
       unique_together = [['owner', 'project']]
