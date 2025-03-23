@@ -535,9 +535,9 @@ img {
   border-top: 2px solid var(--color-light);
 }
 
-.comments .form label {
+.comments .form label { 
   position: absolute;
-  margin: -9999px;
+  margin: -9999px; 
 }
 
 .commentList {

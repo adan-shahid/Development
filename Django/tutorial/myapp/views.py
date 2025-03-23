@@ -88,7 +88,7 @@ def projects(request):
 
 def project(request,pk):
     projectObj = Project.objects.get(id=pk)
-    form = ReviewForm()
+    form = ReviewForm() # actually we want access to this form inside single project.html
     # tags = projectObj.tags.all()
     # for i in  projectsList:
     #     if i['id'] == pk:

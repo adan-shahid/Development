@@ -66,11 +66,10 @@
                {% for field in form %} 
                <!-- 'form' IS THE WORLD WE PUT IN CONTEXT DICT IN PROJECTS VIEW. -->
               <div class="form__field">
-                <label for="formInput#textarea">{{field.label}}</label> 
-                {{field}}
+                <label for="formInput#textarea">{{ field.label }}</label> 
+                {{ field }}
               </div>
               {% endfor %}
-
               <input class="btn btn--sub btn--lg" type="submit" value="Add Review" />
             </form>
 
