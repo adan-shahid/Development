@@ -34,7 +34,6 @@ class Review(models.Model):
         ('up','Up Vote'),
         ('down','Down Vote'),
     )
-
     owner = models.ForeignKey(Profile, on_delete=models.CASCADE, null = True)
     project = models.ForeignKey(Project, on_delete=models.CASCADE) # when the model is deleted, all the reviews should also be deleted.
     body = models.TextField(null = True, blank=True)

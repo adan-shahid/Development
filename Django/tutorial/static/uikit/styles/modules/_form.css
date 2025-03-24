@@ -20,10 +20,12 @@
 
 .form__label,
 .form__field > label {
-  display: block;
-  margin-bottom: 0.5rem;
+  display: block; 
+  margin-bottom: 0.3rem;
   color: var(--color-text);
-}
+} 
+
+
 
 .form__label--inline {
   display: inline-block;

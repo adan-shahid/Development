@@ -61,8 +61,6 @@
             </h5>
 
             <form class="form" action="{% url 'project' project.id %}" method="POST">
-
-              <!-- Textarea -->
                {% for field in form %} 
                <!-- 'form' IS THE WORLD WE PUT IN CONTEXT DICT IN PROJECTS VIEW. -->
               <div class="form__field">
