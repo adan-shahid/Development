@@ -24,9 +24,23 @@ class Project(models.Model):
     def __str__(self):
         return self.title
     
-# If we want to sort the projects in old first 
+#If we want to sort the projects in old first 
     class Meta:
         ordering = ['created']
+
+#THE REVIEWS WE WERE ADDING WERE NOT ACTUALLY UPDATING ON THE FRONTEND.
+#TO DO SO, WE ARE WRITING THIS
+    @property #SO THAT WE RUN IT AS AN ATTRIBUTE. 
+    def getVoteCount(self):
+        reviews = self.review_set.all() #GETTING ALL THE REVIEWS
+        upVotes = reviews.filter(value='up').count()
+        totalVotes = reviews.count()
+
+        ratio = (upVotes /totalVotes ) * 100 
+        self.vote_total = totalVotes
+        self.vote_ratio = ratio
+
+        self.save()
     
 
 class Review(models.Model):

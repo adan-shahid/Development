@@ -8,6 +8,7 @@ from .forms import ProjectForm, ReviewForm
 from .utils import searchProject, paginateProjects
 
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.contrib import messages
 
 
 # Create your views here.
@@ -89,6 +90,33 @@ def projects(request):
 def project(request,pk):
     projectObj = Project.objects.get(id=pk)
     form = ReviewForm() # actually we want access to this form inside single project.html
+
+    # Now we process this review form.
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+        review = form.save(commit=False)
+        review.project = projectObj
+        review.owner = request.user.profile
+        review.save()
+
+ #UPDATE PROJECT VOTECOUNT.
+        projectObj.getVoteCount
+
+
+#AFTER PROCESSING, WE NEED TO SEND THE MESSAGE TO THE USER THAT THEIR REVIEW IS SUBMITTED.
+        messages.success(request, 'Your review was successfully submitted!')  
+#WHEN WE WERE SUBMITTING, FORM WAS NOT REFERESHIHNG, TO DO SO, WE SIMPLY REDIRECT THE USER TO THE PROJECT PAGE.
+        return redirect('project', pk=projectObj.id)
+   
+
+
+
+    
+
+
+
+
+
     # tags = projectObj.tags.all()
     # for i in  projectsList:
     #     if i['id'] == pk:
