@@ -22,7 +22,7 @@ def loginUser(request):
 
 
     if request.method == 'POST':
-        username = request.POST['username']
+        username = request.POST['username'].lower()
         password = request.POST['password']
         #print(request.POST)
         # We want to run a few checks if  a user has send something wrong
