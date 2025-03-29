@@ -25,8 +25,19 @@ class Project(models.Model):
         return self.title
     
 #If we want to sort the projects in old first 
+#   class Meta:
+#        ordering = ['created']
+
+#IF WE WANT TO SORT IT ACCORDING TO HOGHEST VOTE RATIO AND TOTAL.
     class Meta:
-        ordering = ['created']
+        ordering = ['-vote_ratio', '-vote_total', 'title']
+
+    @property
+    def reviewers(self):
+#INSTEAD OF GETTING ALL THE ATTRIBUTES OF REVIEWS, WE'RE GETTING THE SINGLE ATTRIBUTE OF REVIEWS.
+        queryset = self.review_set.all().values_list('owner__id', flat=True)
+        return queryset
+
 
 #THE REVIEWS WE WERE ADDING WERE NOT ACTUALLY UPDATING ON THE FRONTEND.
 #TO DO SO, WE ARE WRITING THIS
