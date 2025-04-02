@@ -6,7 +6,7 @@ from django.contrib import messages
 from django.db.models import Q
 
 from django.contrib.auth.models import User
-from .models import Profile, Skill
+from .models import Profile, Skill, Message
 from .forms import CustomUserCreationForm, profileForm, SkillForm
 from .utils import searchProfiles, paginateProfiles
 
@@ -212,7 +212,12 @@ def deleteSkill(request, pk):
 
 @login_required(login_url='login')
 def inbox(request):
-    context = {}
+    profile = request.user.profile #1ST GET THE LOGGED IN USER.
+#BCZ WE WROTE RELATED_NAME - MESSAGES IN RECIPIENT OBJECT IN MODELS.
+    messageRequest = profile.messages.all() 
+    unreadCount = messageRequest.filter(is_read=False).count()
+    
+    context = {'messageRequest':messageRequest, 'unreadCount':unreadCount}
     return render(request, 'users/inbox.html', context)
 
 
