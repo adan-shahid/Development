@@ -220,4 +220,12 @@ def inbox(request):
     context = {'messageRequest':messageRequest, 'unreadCount':unreadCount}
     return render(request, 'users/inbox.html', context)
 
+@login_required(login_url='login')
+def viewMessage(request, pk):
+    profile = request.user.profile #1ST GET THE LOGGED IN USER.
+#BCZ WE WROTE RELATED_NAME - MESSAGES IN RECIPIENT OBJECT IN MODELS.
+    message = profile.messages.get(id=pk) 
+    context = {'message':message}
+    return render(request, 'users/message.html', context)
+
 

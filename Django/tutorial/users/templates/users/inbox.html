@@ -17,9 +17,9 @@
           <li class="message">
         
         {% endif %}
-          <a href="message.html">
+          <a href="{% url 'message' message.id %}">
             <span class="message__author" href = "#" >{{message.name}}</span>
-            <span class="message__subject">{{message.subject}}</span>
+            <span class="message__subject"  >{{message.subject}}</span>
             <span class="message__date">{{message.created}}</span>
           </a>
         </li>
