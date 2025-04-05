@@ -222,9 +222,16 @@ def inbox(request):
 
 @login_required(login_url='login')
 def viewMessage(request, pk):
+
     profile = request.user.profile #1ST GET THE LOGGED IN USER.
+    
 #BCZ WE WROTE RELATED_NAME - MESSAGES IN RECIPIENT OBJECT IN MODELS.
     message = profile.messages.get(id=pk) 
+
+#WHENEVER THE USER OPENS THE MESSAGE, IT MARKS AS READ
+    if message.is_read == False:
+        message.is_read = True
+        message.save()
     context = {'message':message}
     return render(request, 'users/message.html', context)
 
