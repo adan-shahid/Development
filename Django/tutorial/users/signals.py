@@ -4,6 +4,9 @@ from django.dispatch import receiver
 from django.contrib.auth.models import User
 from .models import Profile
 
+from django.core.mail import send_mail
+from django.conf import settings
+
 #@receiver(post_save,  sender=Profile)    
 def createdProfile(sender, instance, created, **kwargs ):
     if created:
@@ -14,6 +17,22 @@ def createdProfile(sender, instance, created, **kwargs ):
             email= user.email,
             name=user.first_name,
         )
+
+        subject = 'Welcome to Dev Search.'
+        message = 'We are glad you are here.'
+
+#I WANNA SEND THE EMAIL ONLY WHEN THE USER IS CREATED.
+        send_mail(
+            subject,
+            message,
+            settings.EMAIL_HOST_USER,
+            [profile.email],
+            fail_silently=False,
+        )
+
+
+
+
 
 # Now simply we modify the user(in admin) anytime the profile is updated.
 # We are doing this to ensure that when a user on website changes its information,
