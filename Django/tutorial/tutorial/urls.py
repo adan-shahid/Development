@@ -27,7 +27,8 @@ urlpatterns = [
     path('', include('users.urls')),
 
 # ALWAYS KEEP IN MIND THE NAMING COVENTIONS. DJANGO TOLD US TO DO THAT.
-    path('reset_password/', auth_views.PasswordResetView.as_view(), 
+
+    path('reset_password/', auth_views.PasswordResetView.as_view(template_name='reset_password.html'), 
          name="reset_password"),
 
     path('reset_password_sent/', auth_views.PasswordResetDoneView.as_view(),
@@ -38,7 +39,6 @@ urlpatterns = [
 
     path('reset_password_complete', auth_views.PasswordResetCompleteView.as_view(),
          name="password_reset_complete"),      
-
 
 ]
 
