@@ -124,7 +124,7 @@ EMAIL_HOST =   'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'adanshahid.engineer@gmail.com'
-EMAIL_HOST_PASSWORD = ' ' #NEVER WRITE YOUR PASSWORD HERE.
+EMAIL_HOST_PASSWORD = '' #NEVER WRITE YOUR PASSWORD HERE.
 
 
 # Static files (CSS, JavaScript, Images)
