@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'myapp.apps.MyappConfig',  # If I don't register app like this,
     'users.apps.UsersConfig',  # Signals will not work.
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
