@@ -25,6 +25,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('projects/', include("myapp.urls")),
     path('', include('users.urls')),
+    path('api/', include('api.urls')),
 
 # ALWAYS KEEP IN MIND THE NAMING COVENTIONS. DJANGO TOLD US TO DO THAT.
 
